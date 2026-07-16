@@ -11,6 +11,7 @@ const Collection = () => {
     const [filterProducts,setFilterProducts]=useState([])
     const [category,setCategory]=useState([])
     const [subCategory, setSubCategory]= useState([])
+    const [sortType, setSortType]=useState('relavent')
 
 const toggoleSubCategory = (e)=>{
     if(subCategory.includes(e.target.value)){
@@ -41,6 +42,26 @@ const toggoleSubCategory = (e)=>{
 useEffect(()=>{
     applyFilter()
 }, [category,subCategory])
+
+const sortProduct = ()=>{
+    let filterProductCopy = filterProducts.slice()
+
+    switch(sortType){
+        case 'low-high':
+            setFilterProducts(filterProductCopy.sort((a,b)=>(a.price -b.price)))
+            break;
+            case 'high-low':
+                setFilterProducts(filterProductCopy.sort((a,b)=>(b.price -a.price)))
+                break;
+
+                default:
+                    applyFilter()
+                    break;
+    }
+}
+useEffect(()=>{
+    sortProduct()
+},[sortType])
 
   
     return (
@@ -84,7 +105,7 @@ useEffect(()=>{
 
                     {/* sorting */}
 
-                    <select className='border-2 border-gray-300 text-sm px-2'>
+                    <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
                         <option value="relavent">Sort by: Relavent</option>
                         <option value="low-high">Sort by: Low to High</option>
                         <option value="high-low">Sort by: High to Low</option>
