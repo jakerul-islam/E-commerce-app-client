@@ -50,7 +50,7 @@ const ContextProvider = (props) => {
         }
         return totalCount;
     };
-    // কার্ট আইটেমের সংখ্যা আপডেট করার ফাংশন (ContextProvider এর ভেতরে value অবজেক্টে এড করুন)
+   
 const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
     cartData[itemId][size] = quantity;

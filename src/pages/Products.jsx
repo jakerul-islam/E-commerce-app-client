@@ -4,7 +4,7 @@ import { ShopContext } from '../context/ContextProvider';
 
 const Products = () => {
     const { productId } = useParams();
-    // ১. কনটেক্সট থেকে addToCart ফাংশনটি আনা হলো
+   
     const { products, currency, addToCart } = useContext(ShopContext); 
     const [productData, setProductData] = useState(false);
     const [image, setImage] = useState('');
@@ -88,7 +88,7 @@ const Products = () => {
                         </div>
                     </div>
 
-                    {/* ২. বাটন ক্লিকে addToCart কল করা হলো আইডি ও সাইজ সহ */}
+                  
                     <button 
                         onClick={() => addToCart(productData._id, size)}
                         className='bg-black text-white px-8 py-3 text-xs font-semibold active:bg-gray-700 transition-colors tracking-wider rounded-sm uppercase'

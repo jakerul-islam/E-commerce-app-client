@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { ShopContext } from '../context/ContextProvider';
 
 const Navbar = () => {
-    // স্মল ডিভাইসের মেনু ওপেন/ক্লোজ স্টেট
+   
     const [visible, setVisible] = useState(false);
     const { getCartCount } = useContext(ShopContext);
 
@@ -53,7 +53,7 @@ const Navbar = () => {
                     <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
                 </Link>
 
-                {/* হামবার্গার মেনু আইকন - স্মল ডিভাইসের জন্য */}
+              
                 <img 
                     onClick={() => setVisible(true)} 
                     src={assets.menu_icon}  
@@ -62,7 +62,7 @@ const Navbar = () => {
                 />
             </div>
 
-            {/* ------- স্মল ডিভাইসের জন্য রেসপনসিভ ড্রপডাউন/স্লাইড মেনু ------- */}
+           
             <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all z-50 ${visible ? 'w-full h-screen' : 'w-0 h-0'}`}>
                 <div className='flex flex-col text-gray-600 h-full'>
                     
@@ -73,7 +73,7 @@ const Navbar = () => {
                         <p className='text-sm text-gray-500'>Back</p>
                     </div>
 
-                    {/* মোবাইল নেভিগেশন লিংকসমূহ */}
+                   
                     <div className='flex flex-col font-medium text-lg'>
                         <NavLink onClick={() => setVisible(false)} className='py-3 pl-6 border-b hover:bg-gray-50' to='/'>HOME</NavLink>
                         <NavLink onClick={() => setVisible(false)} className='py-3 pl-6 border-b hover:bg-gray-50' to='/collection'>COLLECTION</NavLink>

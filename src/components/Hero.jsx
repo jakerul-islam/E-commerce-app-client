@@ -32,7 +32,7 @@ const Hero = () => {
             </div>
 
             {/* Hero Right Side - Image Section */}
-            {/* background color #ffdad6 ব্যবহার করা হয়েছে ইমেজের পিঙ্ক টোনের সাথে ম্যাচ করার জন্য */}
+            
             <div className='w-full sm:w-1/2 bg-[#ffdad6] flex items-end justify-center overflow-hidden'>
                 <img 
                     src={assets.hero_img}
