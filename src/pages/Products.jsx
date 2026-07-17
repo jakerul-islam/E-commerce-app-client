@@ -4,14 +4,13 @@ import { ShopContext } from '../context/ContextProvider';
 
 const Products = () => {
     const { productId } = useParams();
-    // ১. আপনার কনটেক্সট থেকে products (ছোট হাতের) এবং currency ডেটা নেওয়া হলো
-    const { products, currency } = useContext(ShopContext); 
+    // ১. কনটেক্সট থেকে addToCart ফাংশনটি আনা হলো
+    const { products, currency, addToCart } = useContext(ShopContext); 
     const [productData, setProductData] = useState(false);
     const [image, setImage] = useState('');
-    const [size, setSize] = useState(''); // সিলেক্টেড সাইজ স্টোর করার জন্য
+    const [size, setSize] = useState(''); 
 
     const fetchProductData = () => {
-        // map-এর চেয়ে .find() ব্যবহার করা ডেটা খোঁজার জন্য বেস্ট প্র্যাকটিস
         const targetProduct = products.find((item) => item._id === productId);
         if (targetProduct) {
             setProductData(targetProduct);
@@ -28,12 +27,10 @@ const Products = () => {
     return productData ? (
         <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
             
-            {/* ---------- Product Data Section ---------- */}
-            <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
+            <div className='flex gap-12 flex-col sm:flex-row'>
                 
                 {/* ----- Left Side: Product Images ----- */}
                 <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
-                    {/* Side Small Images List */}
                     <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
                         {
                             productData.image.map((item, index) => (
@@ -47,7 +44,6 @@ const Products = () => {
                             ))
                         }
                     </div>
-                    {/* Main Display Image */}
                     <div className='w-full sm:w-[80%]'>
                         <img className='w-full h-auto rounded' src={image} alt={productData.name} />
                     </div>
@@ -57,7 +53,6 @@ const Products = () => {
                 <div className='flex-1'>
                     <h1 className='font-medium text-2xl mt-2 text-gray-800'>{productData.name}</h1>
                     
-                    {/* Star Rating Layout */}
                     <div className='flex items-center gap-1 mt-2'>
                         <span className='text-orange-500 text-lg'>★</span>
                         <span className='text-orange-500 text-lg'>★</span>
@@ -67,12 +62,10 @@ const Products = () => {
                         <p className='pl-2 text-sm text-gray-500'>(122)</p>
                     </div>
 
-                    {/* Price */}
                     <p className='mt-5 text-3xl font-medium text-gray-900'>
                         {currency ? currency : '$'}{productData.price}
                     </p>
 
-                    {/* Description */}
                     <p className='mt-5 text-gray-500 md:w-4/5 leading-relaxed text-sm sm:text-base'>
                         {productData.description}
                     </p>
@@ -95,14 +88,16 @@ const Products = () => {
                         </div>
                     </div>
 
-                    {/* Add to Cart Button */}
-                    <button className='bg-black text-white px-8 py-3 text-xs font-semibold active:bg-gray-700 transition-colors tracking-wider rounded-sm uppercase'>
+                    {/* ২. বাটন ক্লিকে addToCart কল করা হলো আইডি ও সাইজ সহ */}
+                    <button 
+                        onClick={() => addToCart(productData._id, size)}
+                        className='bg-black text-white px-8 py-3 text-xs font-semibold active:bg-gray-700 transition-colors tracking-wider rounded-sm uppercase'
+                    >
                         ADD TO CART
                     </button>
 
                     <hr className='mt-8 sm:w-4/5 border-gray-200' />
 
-                    {/* Product Policies List */}
                     <div className='text-xs sm:text-sm text-gray-500 mt-5 flex flex-col gap-1 tracking-wide'>
                         <p>100% Original product.</p>
                         <p>Cash on delivery is available on this product.</p>
