@@ -5,7 +5,7 @@ import About from './pages/About';
 import Cart from './pages/Cart';
 import Collection from './pages/Collection';
 import Contact from './pages/Contact';
-import Login from './pages/login';
+// import Login from './pages/login';
 import Orders from './pages/Orders';
 import PlaceOrder from './pages/PlaceOrder';
 import Products from './pages/Products';
